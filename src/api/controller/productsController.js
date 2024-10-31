@@ -10,10 +10,10 @@ class ProductController{
             const products = Array.isArray(req.body) ? req.body : [req.body]; 
             const result = await Promise.all(
                 products.map(async (product) => {
-                    const { name, desc, banner, markupPrice, salePrice, onSale, category, inventory } = product;
+                    const { name, description, banner, markupPrice, salePrice, onSale, category, inventory } = product;
     
                     // Call the service to create a product
-                    const { data } = await service.CreateProduct({ name, desc, banner, markupPrice, salePrice, onSale, category, inventory });
+                    const { data } = await service.CreateProduct({ name, desc: description, banner, markupPrice, salePrice, onSale, category, inventory });
 
                     return data;
                 })
@@ -32,6 +32,15 @@ class ProductController{
     async GetProducts(req, res, next){
         try {
             const { data} = await service.GetProducts();        
+            return res.status(200).json(data);
+        } catch (error) {
+            next(err)
+        }
+    }
+
+    async GetCategories(req, res, next){
+        try {
+            const { data } = await service.GetCategories();        
             return res.status(200).json(data);
         } catch (error) {
             next(err)

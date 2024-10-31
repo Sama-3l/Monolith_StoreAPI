@@ -58,6 +58,18 @@ class ProductRepository {
     }
   }
 
+  async Categories(){
+    try{
+      return await CategoryModel.find().populate("products");
+    } catch(err){
+      throw new APIError(
+        "API Error",
+        STATUS_CODES.INTERNAL_ERROR,
+        "Unable to Get Products"
+      );
+    }
+  }
+
   async FindById(id) {
     try {
       return await ProductModel.findById(id);

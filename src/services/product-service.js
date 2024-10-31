@@ -38,6 +38,14 @@ class ProductService {
         }
     }
 
+    async GetCategories(){
+        try {
+            const product = await this.repository.Categories();
+            return FormateData(product)
+        } catch (err) {
+            throw new APIError('Data Not found')
+        }
+    }
 
     async GetProductDescription(productId){
         try {

@@ -16,7 +16,12 @@ const ProductSchema = new Schema({
         L: { type: Number, default: 0 },
         XL: { type: Number, default: 0 },
         XXL: { type: Number, default: 0 },
-    }
+    },
+    publishedAt: {
+        type: Date,
+        default: Date.now  // Automatically set to the current date and time upon creation
+    },
+    wishlist: {type: Boolean, deafult: false},
 });
 
 module.exports =  mongoose.model('product', ProductSchema);

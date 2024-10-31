@@ -7,6 +7,7 @@ const UserAuth = require('./middleware/auth')
 router.post('/create', UserAuth, ProductController.Create);
 
 router.get('/', ProductController.GetProducts)
+router.get('/categories', ProductController.GetCategories);
 router.get('/category/:type', ProductController.GetProdByCategory);
 router.get('/:id', ProductController.GetProdById)
 
